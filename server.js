@@ -56,7 +56,7 @@ app.get('/echoAtTime', function(req, res) {
 
     setTimeout(() => {
         var timeOnPrint = time;
-        console.log(moment(time * 1000).format("DD/MM/YYYY hh:mm:ss"));
+        console.log(moment(time * 1000).utc().format("DD/MM/YYYY hh:mm:ss"));
         console.log(moment(timeOnPrint * 1000).local().format("DD/MM/YYYY hh:mm:ss"));
         printAndRemoveFromRedis(timeOnPrint, timeOnPrint);
         
