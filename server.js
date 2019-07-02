@@ -14,7 +14,7 @@ require("redis").createClient();
 
 var os = require("os");
 
-const PORT = process.argv[2];
+var PORT = process.env.PORT || '8080';
 
 const REDIS_KEY_OF_SET = `messages-${os.hostname()}-${PORT}`;
 
