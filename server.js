@@ -66,6 +66,7 @@ app.get('/echoAtTime', function(req, res) {
 
 var server = http.createServer(app);
 server.on('listening', () => {
+    console.log('listening on port: ' + PORT)
     console.log(`undelivered messages on ${REDIS_KEY_OF_SET}: `);
     printAndRemoveFromRedis("-inf", moment().unix());
 });
