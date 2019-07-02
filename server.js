@@ -2,7 +2,16 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var moment = require('moment');
-var redisClient = require('redis').createClient();
+var redisClient = 
+process.env.ENV === "PROD" ? require('redis').createClient(
+    {
+        auth_pass: process.env.REDIS_PASSWORD,
+        url: process.env.REDIS_URL
+    }
+)
+:
+require("redis").createClient();
+
 var os = require("os");
 
 const PORT = process.argv[2];
