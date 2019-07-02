@@ -56,6 +56,7 @@ app.get('/echoAtTime', function(req, res) {
 
     setTimeout(() => {
         var timeOnPrint = time;
+        console.log(moment(timeOnPrint * 1000).format("DD/MM/YYYY hh:mm:ss"));
         printAndRemoveFromRedis(timeOnPrint, timeOnPrint);
         
     }, getDeltaTimeFromNow(time));
