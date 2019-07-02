@@ -19,7 +19,7 @@ var PORT = process.env.PORT || '8080';
 const REDIS_KEY_OF_SET = `messages-${os.hostname()}-${PORT}`;
 
 function getDeltaTimeFromNow(time) {
-    return (parseInt(time) * 1000) - (moment().unix() * 1000);
+    return (moment(time * 1000).local().unix() * 1000) - (moment().unix() * 1000);
 }
 
 function printAndRemoveFromRedis(fromTime, toTime) {
@@ -56,7 +56,7 @@ app.get('/echoAtTime', function(req, res) {
 
     setTimeout(() => {
         var timeOnPrint = time;
-        console.log(moment(timeOnPrint * 1000).format("DD/MM/YYYY hh:mm:ss"));
+        console.log(moment(timeOnPrint * 1000).local().format("DD/MM/YYYY hh:mm:ss"));
         printAndRemoveFromRedis(timeOnPrint, timeOnPrint);
         
     }, getDeltaTimeFromNow(time));
