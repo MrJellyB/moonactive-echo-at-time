@@ -43,12 +43,10 @@ app.get('/echoAtTime', function(req, res) {
         return;
     }
 
-    console.log(getDeltaTimeFromNow(time));
     redisClient.zadd(REDIS_KEY_OF_SET, parseInt(time), message);
 
     setTimeout(() => {
         var timeOnPrint = time;
-        console.log(timeOnPrint);
         printAndRemoveFromRedis(timeOnPrint, timeOnPrint);
         
     }, getDeltaTimeFromNow(time));
