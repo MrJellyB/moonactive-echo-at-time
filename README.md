@@ -17,5 +17,5 @@ node server.js <PORT>
 
 then, to test an instance, run:
 `
-node test.js <numberOfRetries> <portOfServerInstance>
+node test.js <numberOfRetries> <url>
 `
